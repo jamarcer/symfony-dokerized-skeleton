@@ -14,3 +14,7 @@ It is composed by 3 containers:
 
 1. Clone this repository.
 
+## Credits
+
+This project is based on the [symfony-docker](https://github.com/ger86/symfony-docker). Thanks to Ger86 for the great work.
+I don't fork its repository because I need a simplified version of it, so i will change a lot of its advanced functionalities and features.
