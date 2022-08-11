@@ -6,7 +6,7 @@ services:
         platform: linux/x86_64
         command: --default-authentication-plugin=mysql_native_password
         volumes:
-            - "db_app:/var/lib/mysql"
+            - "../docker_data/mysql:/var/lib/mysql"
         environment:
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
             MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -35,10 +35,7 @@ services:
         networks:
             - symfony
         env_file:
-            - .env.nginx.local
-
-volumes:
-    db_app:
+            - .env.nginx
 
 networks:
     symfony:
