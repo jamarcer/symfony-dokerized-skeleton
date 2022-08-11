@@ -9,6 +9,7 @@ system-init:
 	if [ ! -d "vendor" ]; then \
 		echo "Installing dependencies"; \
 		${DOCKER} run --rm -u ${UID}:${GID} php composer install; \
+		${DOCKER} run --rm -u ${UID}:${GID} php chmod -R 777 var/cache var/log; \
 	fi
 
 system-run:
@@ -20,8 +21,11 @@ system-stop:
 run-php:
 	${DOCKER} exec php bash
 
+symfony-allow-write:
+	${DOCKER} run --rm -u ${UID}:${GID} php chmod -R 777 var/cache var/log;
+
 test:
-	${DOCKER} run phpcli vendor/bin/phpunit -c phpunit.xml.dist
+	${DOCKER} run php vendor/bin/phpunit -c phpunit.xml.dist
 
 vendor: composer.json
 	${DOCKER} run --rm -u ${UID}:${GID} php composer install
